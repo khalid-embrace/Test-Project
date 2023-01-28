@@ -9,6 +9,7 @@ import { ProductModule } from "./product/product.module";
 import { ACLModule } from "./auth/acl.module";
 import { AuthModule } from "./auth/auth.module";
 import { HealthModule } from "./health/health.module";
+import { SaleModule } from "./sale/sale.module";
 import { PrismaModule } from "./prisma/prisma.module";
 import { SecretsManagerModule } from "./providers/secrets/secretsManager.module";
 import { ConfigModule, ConfigService } from "@nestjs/config";
@@ -24,6 +25,7 @@ import { GraphQLModule } from "@nestjs/graphql";
     CustomerModule,
     AddressModule,
     ProductModule,
+    SaleModule,
     ACLModule,
     AuthModule,
     HealthModule,
