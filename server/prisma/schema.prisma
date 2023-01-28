@@ -23,12 +23,32 @@ model Order {
   customer   Customer? @relation(fields: [customerId], references: [id])
   customerId String?
   discount   Float?
+  sales      Sale[]
   id         String    @id @default(cuid())
   product    Product?  @relation(fields: [productId], references: [id])
   productId  String?
   quantity   Int?
   totalPrice Int?
   updatedAt  DateTime  @updatedAt
+}
+
+model Sale {
+  id            String    @id @default(cuid())
+  order         Order? @relation(fields: [orderId], references: [id])
+  orderId       String
+  trackingId    String
+  shipmentDate  DateTime
+  paymentStatus PaymentStatus
+  address       Address? @relation(fields: [addressId], references: [id])
+  addressId     String
+  createdAt     DateTime   @default(now())
+  updatedAt     DateTime @updatedAt
+}
+
+enum PaymentStatus {
+  PENDING
+  PAID
+  REJECTED
 }
 
 model Customer {
@@ -50,6 +70,7 @@ model Address {
   city      String?
   createdAt DateTime   @default(now())
   customers Customer[]
+  sales     Sale[]
   id        String     @id @default(cuid())
   state     String?
   updatedAt DateTime   @updatedAt
